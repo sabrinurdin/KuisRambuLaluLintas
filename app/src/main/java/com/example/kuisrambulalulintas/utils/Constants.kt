@@ -1,4 +1,7 @@
-package com.example.kuisrambulalulintas
+package com.example.kuisrambulalulintas.utils
+
+import com.example.kuisrambulalulintas.R
+import com.example.kuisrambulalulintas.model.Soal
 
 object Constants {
     val USER_NAME: String = "user_name"

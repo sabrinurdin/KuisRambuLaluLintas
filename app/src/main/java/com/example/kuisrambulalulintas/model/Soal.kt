@@ -1,4 +1,4 @@
-package com.example.kuisrambulalulintas
+package com.example.kuisrambulalulintas.model
 
 data class Soal(
     val id: Int,

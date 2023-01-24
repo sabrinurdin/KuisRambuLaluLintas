@@ -1,9 +1,11 @@
-package com.example.kuisrambulalulintas
+package com.example.kuisrambulalulintas.ui.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.kuisrambulalulintas.MainActivity
 import com.example.kuisrambulalulintas.databinding.ActivityResultBinding
+import com.example.kuisrambulalulintas.utils.Constants
 
 class ResultActivity : AppCompatActivity() {
 
