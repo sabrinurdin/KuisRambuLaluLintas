@@ -8,6 +8,7 @@ import android.os.Bundle
 import com.example.kuisrambulalulintas.databinding.ActivityMainBinding
 import com.example.kuisrambulalulintas.service.BackgroundSoundService
 import com.example.kuisrambulalulintas.ui.activities.GetNameActivity
+import com.example.kuisrambulalulintas.ui.activities.MateriActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 val statusOFF = sharedPref.getInt("status",status!!)
                 status = statusOFF
-                binding.tvMusic.text = "Music :$status"
+                binding.tvMusic.text = "MUSIC : OFF"
                 stopService(Intent(this, BackgroundSoundService::class.java))
             } else {
                 mPlay = true
@@ -53,25 +54,18 @@ class MainActivity : AppCompatActivity() {
                 }
                 val statusOFF = sharedPref.getInt("status",status!!)
                 status = statusOFF
-                binding.tvMusic.text = "Music :$status"
+                binding.tvMusic.text = "MUSIC : ON"
                 startService(Intent(this, BackgroundSoundService::class.java))
             }
         }
 
         binding.cvMateri.setOnClickListener {
+            startActivity(Intent(this,MateriActivity::class.java))
+
         }
 
     }
 
-    override fun onStart() {
-        super.onStart()
-        val statusOFF = sharedPref.getInt("status",status!!)
-        status = statusOFF
-        binding.tvMusic.text = "Music :$status"
-        if (status == 0) {
-            startService(Intent(this, BackgroundSoundService::class.java))
-        }
-    }
 
     /*private fun playAudio() {
        if (mediaPlayer == null){

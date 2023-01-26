@@ -8,4 +8,18 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#777777</color>
+
+
+    <color name="blue_sky">#05D1F7</color>
+    <color name="blue_light">#5BE8F7</color>
+    <color name="blue_tosca">#05D1F7</color>
+
+    <color name="orange_sky">#F9C70D</color>
+    <color name="orange_light">#F9C70D</color>
+    <color name="orange_dark">#F6890C</color>
+
+    android:startColor="#F9C70D"
+    android:centerColor="#F8B90C"
+    android:endColor="#F6890C"
+
 </resources>

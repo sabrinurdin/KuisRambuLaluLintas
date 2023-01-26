@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.ResultActivity"
-    android:background="@drawable/app_bg"
+    android:background="#F2FAFE"
     android:gravity="center"
     android:paddingHorizontal="30dp"
     android:orientation="vertical">
@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="Skor Kamu"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/orange_dark"
         android:textSize="24sp"
         android:textStyle="bold"
         />
@@ -23,6 +23,7 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:src="@drawable/ic_trophy"
         />
 
@@ -32,7 +33,7 @@
         android:layout_height="wrap_content"
         tools:text="Selamat, Sabri!"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/blue_tosca"
         android:textSize="25sp"
         android:textStyle="bold"
         android:layout_marginTop="30dp"
@@ -44,19 +45,20 @@
         android:layout_height="wrap_content"
         android:text="Skor Anda adalah 5 dari 10"
         android:textAlignment="center"
-        android:textColor="@color/white"
+        android:textColor="@color/orange_sky"
         android:textSize="20sp"
         android:paddingVertical="16dp"
         />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRestart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Coba lagi"
         android:textAllCaps="true"
-        android:backgroundTint="@color/white"
-        android:textColor="@color/purple_500"
+        android:background="@drawable/bg_button_blue"
+        app:backgroundTint="@null"
+        android:textColor="@color/white"
         android:textSize="18sp"
         />
 

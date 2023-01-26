@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav"
+    app:startDestination="@id/menuMateriFragment">
+
+    <fragment
+        android:id="@+id/materiFragment"
+        android:name="com.example.kuisrambulalulintas.ui.fragments.MateriFragment"
+        android:label="fragment_materi"
+        tools:layout="@layout/fragment_materi" />
+    <fragment
+        android:id="@+id/menuMateriFragment"
+        android:name="com.example.kuisrambulalulintas.ui.fragments.MenuMateriFragment"
+        android:label="fragment_menu_materi"
+        tools:layout="@layout/fragment_menu_materi" >
+        <action
+            android:id="@+id/action_menuMateriFragment_to_materiFragment"
+            app:destination="@id/materiFragment" />
+    </fragment>
+</navigation>

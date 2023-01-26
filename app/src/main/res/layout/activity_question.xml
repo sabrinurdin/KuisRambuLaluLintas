@@ -103,7 +103,7 @@
                 android:progress="1"
                 android:indeterminate="false"
                 android:layout_marginRight="16dp"
-                android:progressTint="@color/purple_700"
+                android:progressTint="@color/blue_light"
                 android:progressBackgroundTint="@color/purple_200"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 />
@@ -142,12 +142,14 @@
             tools:text="Austria"
             />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSubmit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="SUBMIT"
             android:layout_marginTop="30dp"
+            android:background="@drawable/bg_button_blue"
+            app:backgroundTint="@null"
             android:textSize="18dp"
             android:paddingVertical="10dp"
             />
