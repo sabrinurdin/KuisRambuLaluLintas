@@ -1,5 +1,6 @@
 package com.example.kuisrambulalulintas.ui.activities
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
@@ -8,6 +9,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
+import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -25,7 +27,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class QuestionActivity : AppCompatActivity() {
+class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
     private lateinit var binding : ActivityQuestionBinding
 
     private val viewModel : MainViewModel by viewModels()
@@ -62,6 +64,33 @@ class QuestionActivity : AppCompatActivity() {
 
         getDataKuis()
 
+        binding.sbTime.max = 10
+        binding.sbTime.progress = 10
+        binding.sbTime.setOnSeekBarChangeListener(this)
+
+        timer = object : CountDownTimer((binding.sbTime.progress * 1000).toLong(),1000){
+            override fun onTick(millisUntilFinished: Long) {
+                binding.tvTimer.text = "00:0${millisUntilFinished / 1000}"
+                val longValue = millisUntilFinished / 1000
+                updateSeekbar(longValue.toInt())
+            }
+
+            override fun onFinish() {
+                if (currentQuestionIndex < questionsList.size - 1) {
+                    currentQuestionIndex++
+                    updateQuestion()
+                } else {
+                    val intent = Intent(this@QuestionActivity, ResultActivity::class.java)
+                    intent.putExtra(Constants.USER_NAME, userName)
+                    intent.putExtra(Constants.TOTAL_SoalS, questionsList.size)
+                    intent.putExtra(Constants.SCORE, totalScore)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+        }
+        timer.start()
 
         tvAlternatives = arrayListOf(
             binding.optionOne,
@@ -86,10 +115,10 @@ class QuestionActivity : AppCompatActivity() {
                             R.drawable.correct_option_border_bg
                         )
                         totalScore++
-                        //timer.cancel()
+                        timer.cancel()
                     } else {
                         kesalahan++
-                        //timer.cancel()
+                        timer.cancel()
                         answerView(tvAlternatives!![selectedAlternativeIndex],
                             R.drawable.wrong_option_border_bg
                         )
@@ -176,12 +205,12 @@ class QuestionActivity : AppCompatActivity() {
 
     private fun updateQuestion() {
         defaultAlternativesView()
-        //timer.start()
+        timer.start()
 
         // Render Question Text
         binding.tvQuestion.text = "Apa arti gambar lalu lintas di bawah ini"
         // Render Question Image
-        Glide.with(this)
+        Glide.with(applicationContext)
             .load(questionsList[currentQuestionIndex].image)
             .into(binding.ivImage)
         // progressBar
@@ -230,5 +259,30 @@ class QuestionActivity : AppCompatActivity() {
         tvAlternatives!![selectedAlternativeIndex].setTextColor(
             Color.parseColor("#FFFFFF")
         )
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun updateSeekbar(progress: Int){
+        val minute : Int = progress / 60
+        val seconds : Int = progress % 60
+        var secondsFinal = ""
+        if (seconds <= 9){
+            secondsFinal = "0"  +seconds
+        } else {
+            secondsFinal = "" + seconds
+        }
+
+        binding.sbTime.progress = progress
+        binding.tvTimer.text = "$minute:$secondsFinal"
+    }
+
+    override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {
+        updateSeekbar(progress)
+    }
+
+    override fun onStartTrackingTouch(p0: SeekBar?) {
+    }
+
+    override fun onStopTrackingTouch(p0: SeekBar?) {
     }
 }

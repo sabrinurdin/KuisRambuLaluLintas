@@ -1,6 +1,7 @@
 package com.example.kuisrambulalulintas.utils
 
 import com.example.kuisrambulalulintas.R
+import com.example.kuisrambulalulintas.model.Gambar
 import com.example.kuisrambulalulintas.model.Soal
 
 object Constants {
@@ -122,5 +123,58 @@ object Constants {
         SoalsList.add(SoalTen)
 
         return SoalsList
+    }
+
+    fun getRambuLarangan() : ArrayList<Gambar>{
+        val gambarList = ArrayList<Gambar>()
+
+        val gambar1 = Gambar(1,"Dilarang Parkir",R.drawable.larangan_parkir)
+        gambarList.add(gambar1)
+        val gambar2 = Gambar(2,"Hati-hati",R.drawable.hatihati)
+        gambarList.add(gambar2)
+        val gambar3 = Gambar(3,"Jalanan licin",R.drawable.licin)
+        gambarList.add(gambar3)
+        val gambar4 = Gambar(4,"Dilarang Belok Kiri",R.drawable.putarbalik)
+        gambarList.add(gambar4)
+        val gambar5 = Gambar(5,"Dilarang Merokok",R.drawable.merokok)
+        gambarList.add(gambar5)
+        return gambarList
+    }
+
+    fun getRambuPeringatan() : ArrayList<Gambar>{
+        val gambarList = ArrayList<Gambar>()
+
+        val gambar1 = Gambar(1,"Dilarang Parkir",R.drawable.larangan_parkir)
+        gambarList.add(gambar1)
+        val gambar2 = Gambar(2,"Hati-hati",R.drawable.hatihati)
+        gambarList.add(gambar2)
+        val gambar3 = Gambar(3,"Jalanan licin",R.drawable.licin)
+        gambarList.add(gambar3)
+        val gambar4 = Gambar(4,"Dilarang Belok Kiri",R.drawable.putarbalik)
+        gambarList.add(gambar4)
+        return gambarList
+    }
+
+    fun getRambuPerintah() : ArrayList<Gambar>{
+        val gambarList = ArrayList<Gambar>()
+
+        val gambar1 = Gambar(1,"Dilarang Parkir",R.drawable.larangan_parkir)
+        gambarList.add(gambar1)
+        val gambar2 = Gambar(2,"Hati-hati",R.drawable.hatihati)
+        gambarList.add(gambar2)
+        val gambar3 = Gambar(3,"Jalanan licin",R.drawable.licin)
+        gambarList.add(gambar3)
+
+        return gambarList
+    }
+
+    fun getRambuLPetunjuk() : ArrayList<Gambar>{
+        val gambarList = ArrayList<Gambar>()
+
+        val gambar1 = Gambar(1,"Dilarang Parkir",R.drawable.larangan_parkir)
+        gambarList.add(gambar1)
+        val gambar2 = Gambar(2,"Hati-hati",R.drawable.hatihati)
+        gambarList.add(gambar2)
+        return gambarList
     }
 }

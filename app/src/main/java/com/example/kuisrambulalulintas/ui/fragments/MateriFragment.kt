@@ -1,60 +1,88 @@
 package com.example.kuisrambulalulintas.ui.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.NavArgs
+import androidx.navigation.fragment.navArgs
 import com.example.kuisrambulalulintas.R
+import com.example.kuisrambulalulintas.databinding.FragmentMateriBinding
+import com.example.kuisrambulalulintas.model.Gambar
+import com.example.kuisrambulalulintas.utils.Constants
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MateriFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MateriFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentMateriBinding
+
+    private val args : MateriFragmentArgs by navArgs()
+
+    private val rambuLaranganList = Constants.getRambuLarangan()
+    private val rambuPeringatanList = Constants.getRambuPeringatan()
+    private val rambuPerintahList = Constants.getRambuPerintah()
+    private val rambuPetunjukList = Constants.getRambuLPetunjuk()
+    private var gambarList : ArrayList<Gambar>? = null
+    private var selectIndex = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_materi, container, false)
+        binding = FragmentMateriBinding.inflate(layoutInflater, container, false)
+
+
+        val currentGambar = rambuLaranganList[selectIndex]
+
+        if (args.rambu == 1){
+            gambarList = rambuLaranganList
+        } else if (args.rambu == 2){
+            gambarList = rambuPeringatanList
+        }
+        else if (args.rambu == 3){
+            gambarList = rambuPerintahList
+        } else {
+            gambarList = rambuPetunjukList
+        }
+
+
+        updateGambar(selectIndex)
+
+        binding.btnNext.setOnClickListener {
+            if (selectIndex < gambarList!!.size - 1) {
+                selectIndex++
+                updateGambar(selectIndex)
+
+                Log.d("selectIndex", "$selectIndex")
+                Log.d("selectIndex", "${gambarList!!.size - 1} ${gambarList!!.size}")
+            }
+
+        }
+
+        binding.btnPrev.setOnClickListener {
+            if (selectIndex < gambarList!!.size) {
+                    selectIndex--
+                    updateGambar(selectIndex)
+            }
+        }
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MateriFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MateriFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun updateGambar(selectIndex: Int) {
+
+        if (selectIndex == 0) {
+            binding.btnPrev.visibility = View.GONE
+        } else if (selectIndex == gambarList!!.size - 1) {
+            binding.btnNext.visibility = View.GONE
+        } else {
+            binding.btnNext.visibility = View.VISIBLE
+            binding.btnPrev.visibility = View.VISIBLE
+        }
+        binding.ivRambu.setImageResource(gambarList!![selectIndex].gambar)
+        binding.tvKeterangan.text = gambarList!![selectIndex].keterangan
     }
 }

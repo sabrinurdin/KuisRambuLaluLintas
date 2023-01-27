@@ -9,7 +9,11 @@
         android:id="@+id/materiFragment"
         android:name="com.example.kuisrambulalulintas.ui.fragments.MateriFragment"
         android:label="fragment_materi"
-        tools:layout="@layout/fragment_materi" />
+        tools:layout="@layout/fragment_materi" >
+        <argument
+            android:name="rambu"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/menuMateriFragment"
         android:name="com.example.kuisrambulalulintas.ui.fragments.MenuMateriFragment"

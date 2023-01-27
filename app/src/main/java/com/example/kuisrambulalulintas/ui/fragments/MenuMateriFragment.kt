@@ -22,7 +22,23 @@ class MenuMateriFragment : Fragment() {
 
 
         binding.cvLarangan.setOnClickListener {
-            findNavController().navigate(R.id.action_menuMateriFragment_to_materiFragment)
+            val data = MenuMateriFragmentDirections.actionMenuMateriFragmentToMateriFragment(1)
+            findNavController().navigate(data)
+        }
+
+        binding.cvPeringatan.setOnClickListener {
+            val data = MenuMateriFragmentDirections.actionMenuMateriFragmentToMateriFragment(2)
+            findNavController().navigate(data)
+        }
+
+        binding.cvPerintah.setOnClickListener {
+            val data = MenuMateriFragmentDirections.actionMenuMateriFragmentToMateriFragment(3)
+            findNavController().navigate(data)
+        }
+
+        binding.cvPetunjuk.setOnClickListener {
+            val data = MenuMateriFragmentDirections.actionMenuMateriFragmentToMateriFragment(4)
+            findNavController().navigate(data)
         }
 
 
