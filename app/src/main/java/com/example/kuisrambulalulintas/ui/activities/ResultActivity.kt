@@ -18,9 +18,18 @@ class ResultActivity : AppCompatActivity() {
         val userName = intent.getStringExtra(Constants.USER_NAME)
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_SoalS, 0)
         val score = intent.getIntExtra(Constants.SCORE, 0)
-        binding.congratulationsTv.text = "Congratulations, $userName!"
-        binding.scoreTv.text = "Your score is $score of $totalQuestions"
+        binding.congratulationsTv.text = "Hai, $userName!"
+        binding.scoreTv.text = "Kamu jawab benar $score dari $totalQuestions soal"
+        binding.tvHasil.text = "$score/$totalQuestions"
+        binding.progressBar2.progress = score
+        binding.progressBar2.max = totalQuestions
         binding.btnRestart.setOnClickListener{
+            val intent = Intent(this, QuestionActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
+        binding.btnMenu.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()

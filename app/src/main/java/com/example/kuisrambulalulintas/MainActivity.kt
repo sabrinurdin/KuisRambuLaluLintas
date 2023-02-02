@@ -1,13 +1,16 @@
 package com.example.kuisrambulalulintas
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.media.MediaPlayer
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.example.kuisrambulalulintas.databinding.ActivityMainBinding
 import com.example.kuisrambulalulintas.service.BackgroundSoundService
 import com.example.kuisrambulalulintas.ui.activities.GetNameActivity
+import com.example.kuisrambulalulintas.ui.activities.LevelActivity
 import com.example.kuisrambulalulintas.ui.activities.MateriActivity
 
 class MainActivity : AppCompatActivity() {
@@ -32,7 +35,7 @@ class MainActivity : AppCompatActivity() {
 
 
         binding.cvPlay.setOnClickListener {
-            startActivity(Intent(this, GetNameActivity::class.java))
+            startActivity(Intent(this, LevelActivity::class.java))
         }
 
         binding.cvMusic.setOnClickListener {
@@ -64,6 +67,31 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        binding.cvExit.setOnClickListener {
+            showAlertDialog()
+        }
+
+    }
+
+    override fun onBackPressed() {
+       showAlertDialog()
+    }
+
+    private fun showAlertDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setMessage("Apakah anda yakin akan keluar dari aplikasi ini ?")
+            .setCancelable(false)
+            .setPositiveButton("Ya",DialogInterface.OnClickListener { _, _ ->
+                finish()
+            })
+            .setNegativeButton("keluar",DialogInterface.OnClickListener { dialogInterface, i ->
+                dialogInterface.cancel()
+            })
+
+        val alert = dialogBuilder.create()
+        alert.setTitle("Keluar")
+        alert.show()
     }
 
 

@@ -45,7 +45,7 @@ dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
-    implementation 'com.google.android.material:material:1.7.0'
+    implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.firebase:firebase-firestore-ktx:24.4.1'
     implementation 'com.google.firebase:firebase-database-ktx:20.1.0'
@@ -82,5 +82,8 @@ dependencies {
     //Recyclerview
     def recyclerview_version = "1.2.1"
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
+
+    def lottieVersion = "3.7.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 
 }

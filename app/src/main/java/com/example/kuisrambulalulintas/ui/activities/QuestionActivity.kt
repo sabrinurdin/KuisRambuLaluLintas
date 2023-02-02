@@ -1,10 +1,10 @@
 package com.example.kuisrambulalulintas.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.Typeface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
@@ -13,12 +13,13 @@ import android.widget.SeekBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bumptech.glide.Glide
 import com.example.kuisrambulalulintas.R
 import com.example.kuisrambulalulintas.databinding.ActivityQuestionBinding
 import com.example.kuisrambulalulintas.model.DataSoal
-import com.example.kuisrambulalulintas.model.Soal
 import com.example.kuisrambulalulintas.utils.Constants
 import com.example.kuisrambulalulintas.utils.Resource
 import com.example.kuisrambulalulintas.viewmodel.MainViewModel
@@ -33,6 +34,7 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
     private val viewModel : MainViewModel by viewModels()
 
     private var userName: String? = null
+    private var question: Int? = null
     private lateinit var timer: CountDownTimer
 
     private var questionsList: ArrayList<DataSoal> = ArrayList()
@@ -58,6 +60,7 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
         setContentView(binding.root)
 
         userName = intent.getStringExtra(Constants.USER_NAME)
+        question = intent.getIntExtra("question",0)
 
         val db = FirebaseFirestore.getInstance()
         val soalRef = db.collection("kuis")
@@ -76,13 +79,13 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
             }
 
             override fun onFinish() {
-                if (currentQuestionIndex < questionsList.size - 1) {
+                if (currentQuestionIndex < question!! - 1) {
                     currentQuestionIndex++
                     updateQuestion()
                 } else {
                     val intent = Intent(this@QuestionActivity, ResultActivity::class.java)
                     intent.putExtra(Constants.USER_NAME, userName)
-                    intent.putExtra(Constants.TOTAL_SoalS, questionsList.size)
+                    intent.putExtra(Constants.TOTAL_SoalS, question!!)
                     intent.putExtra(Constants.SCORE, totalScore)
                     startActivity(intent)
                     finish()
@@ -135,7 +138,7 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
                         }else {
                             val intent = Intent(this, ResultActivity::class.java)
                             intent.putExtra(Constants.USER_NAME, userName)
-                            intent.putExtra(Constants.TOTAL_SoalS, questionsList.size)
+                            intent.putExtra(Constants.TOTAL_SoalS, question!!)
                             intent.putExtra(Constants.SCORE, totalScore)
                             startActivity(intent)
                             finish()
@@ -143,17 +146,17 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
                     }
 
                     isAnswerChecked = true
-                    binding.btnSubmit.text = if (currentQuestionIndex == questionsList.size - 1) "SELESAI" else "SOAL SELANJUTNYA"
+                    binding.btnSubmit.text = if (currentQuestionIndex == question!! - 1) "SELESAI" else "SOAL SELANJUTNYA"
                     selectedAlternativeIndex = -1
                 }
             } else {
-                if (currentQuestionIndex < questionsList.size - 1) {
+                if (currentQuestionIndex < question!! - 1) {
                     currentQuestionIndex++
                     updateQuestion()
                 } else {
                     val intent = Intent(this, ResultActivity::class.java)
                     intent.putExtra(Constants.USER_NAME, userName)
-                    intent.putExtra(Constants.TOTAL_SoalS, questionsList.size)
+                    intent.putExtra(Constants.TOTAL_SoalS, question!!)
                     intent.putExtra(Constants.SCORE, totalScore)
                     startActivity(intent)
                     finish()
@@ -183,6 +186,7 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
             when(response){
                 is Resource.Success -> {
                     questionsList = response.data as ArrayList<DataSoal>
+                    questionsList.shuffle()
                     updateQuestion()
 
                     Log.d("DataResponse","$questionsList")
@@ -215,15 +219,16 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
             .into(binding.ivImage)
         // progressBar
         //binding.ivImage.setIma(questionsList[currentQuestionIndex].image)
+        binding.progressBar.max = question!!
         binding.progressBar.progress = currentQuestionIndex + 1
         // Text of progress bar
-        binding.tvProgress.text = "${currentQuestionIndex + 1}/${questionsList.size}"
+        binding.tvProgress.text = "${currentQuestionIndex + 1}/${question!!}"
 
         for (alternativeIndex in questionsList[currentQuestionIndex].pilihan!!.indices) {
             tvAlternatives!![alternativeIndex].text = questionsList[currentQuestionIndex].pilihan?.get(alternativeIndex)!!
         }
 
-        binding.btnSubmit.text = if (currentQuestionIndex == questionsList.size - 1) "SELESAI" else "JAWAB"
+        binding.btnSubmit.text = if (currentQuestionIndex == question!! - 1) "SELESAI" else "JAWAB"
     }
 
     private fun defaultAlternativesView() {
@@ -284,5 +289,27 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
     }
 
     override fun onStopTrackingTouch(p0: SeekBar?) {
+    }
+
+    override fun onBackPressed() {
+        showAlertDialog()
+
+    }
+
+    private fun showAlertDialog() {
+        val dialogBuilder = AlertDialog.Builder(this)
+
+        dialogBuilder.setMessage("Apakah anda yakin akan keluar dari permainan ini ?")
+            .setCancelable(false)
+            .setPositiveButton("Ya", DialogInterface.OnClickListener { _, _ ->
+                finish()
+            })
+            .setNegativeButton("keluar", DialogInterface.OnClickListener { dialogInterface, i ->
+                dialogInterface.cancel()
+            })
+
+        val alert = dialogBuilder.create()
+        alert.setTitle("Keluar")
+        alert.show()
     }
 }

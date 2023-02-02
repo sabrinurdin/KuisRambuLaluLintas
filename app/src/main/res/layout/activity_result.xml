@@ -1,65 +1,159 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activities.ResultActivity"
-    android:background="#F2FAFE"
+    android:background="@drawable/bg_level3"
     android:gravity="center"
     android:paddingHorizontal="30dp"
     android:orientation="vertical">
 
-    <TextView
+   <!-- <TextView
+        android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Skor Kamu"
+        tools:text="Hasil Akhir"
         android:textAlignment="center"
         android:textColor="@color/orange_dark"
         android:textSize="24sp"
         android:textStyle="bold"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <ImageView
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ivIcon"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/trophy2"/>
+
+  <!--  <ImageView
+        android:id="@+id/ivIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/note" />-->
+
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:src="@drawable/ic_trophy"
-        />
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="11dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivIcon">
 
-    <TextView
-        android:id="@+id/congratulationsTv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Selamat, Sabri!"
-        android:textAlignment="center"
-        android:textColor="@color/blue_tosca"
-        android:textSize="25sp"
-        android:textStyle="bold"
-        android:layout_marginTop="30dp"
-        />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="250dp">
 
-    <TextView
-        android:id="@+id/scoreTv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Skor Anda adalah 5 dari 10"
-        android:textAlignment="center"
-        android:textColor="@color/orange_sky"
-        android:textSize="20sp"
-        android:paddingVertical="16dp"
-        />
+
+            <TextView
+                android:id="@+id/congratulationsTv"
+                android:layout_width="match_parent"
+                android:layout_height="34dp"
+                android:layout_marginTop="8dp"
+                android:textAlignment="center"
+                android:textColor="@color/blue_tosca"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Hai, Sabri!" />
+
+            <ProgressBar
+                android:id="@+id/progressBar2"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                style="@style/CircularDeterminateProgressBar"
+                android:progress="5"
+                android:max="10"
+                app:circularflow_radiusInDP="5dp"
+                android:backgroundTint="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/scoreTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp"
+                tools:text="Kamu menjawab benar 8 dari 10 soal"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.733"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvHasil"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="8/10"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
+                app:layout_constraintEnd_toEndOf="@+id/progressBar2"
+                app:layout_constraintStart_toStartOf="@+id/progressBar2"
+                app:layout_constraintTop_toTopOf="@+id/progressBar2" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRestart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_level5"
         android:text="Coba lagi"
+        app:cornerRadius="11dp"
         android:textAllCaps="true"
-        android:background="@drawable/bg_button_blue"
-        app:backgroundTint="@null"
         android:textColor="@color/white"
         android:textSize="18sp"
-        />
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toTopOf="@+id/btnMenu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_level5"
+        android:text="Menu"
+        app:cornerRadius="11dp"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

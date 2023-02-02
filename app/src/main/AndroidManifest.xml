@@ -36,6 +36,7 @@
         </activity>
         <activity
             android:name=".ui.activities.GetNameActivity"
+            android:theme="@style/AppTheme"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -50,6 +51,7 @@
         </activity>
         <activity
             android:name=".ui.activities.ResultActivity"
+            android:theme="@style/AppTheme"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

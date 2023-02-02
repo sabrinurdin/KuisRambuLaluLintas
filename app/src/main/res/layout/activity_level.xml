@@ -259,7 +259,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvPetunjuk"
+                android:id="@+id/btnLevel4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -327,7 +327,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cvLevel5"
+                android:id="@+id/btnLevel5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
@@ -337,7 +337,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cvPetunjuk"
+                app:layout_constraintTop_toBottomOf="@+id/btnLevel4"
                 app:rippleColor="@color/black">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
