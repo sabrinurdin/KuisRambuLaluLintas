@@ -22,6 +22,7 @@
         </activity>
         <activity
             android:name=".ui.activities.MateriActivity"
+            android:theme="@style/AppTheme"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
