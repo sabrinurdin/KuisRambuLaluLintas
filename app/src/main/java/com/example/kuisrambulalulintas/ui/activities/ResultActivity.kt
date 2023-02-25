@@ -25,6 +25,8 @@ class ResultActivity : AppCompatActivity() {
         binding.progressBar2.max = totalQuestions
         binding.btnRestart.setOnClickListener{
             val intent = Intent(this, QuestionActivity::class.java)
+            intent.putExtra("question",totalQuestions)
+            intent.putExtra(Constants.USER_NAME,userName)
             startActivity(intent)
             finish()
         }

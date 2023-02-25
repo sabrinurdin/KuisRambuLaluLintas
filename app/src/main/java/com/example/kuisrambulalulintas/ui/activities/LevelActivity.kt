@@ -28,7 +28,7 @@ class LevelActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.btnLevel2.setOnClickListener {
+        binding.clLevel2.setOnClickListener {
             val idLevel2 = 2
             val question2 = 5
             val tvLevel = "Level 2"

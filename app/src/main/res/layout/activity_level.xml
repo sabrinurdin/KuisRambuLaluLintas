@@ -115,94 +115,36 @@
                 <ImageView
                     android:id="@+id/ivLogo1"
                     android:layout_width="100dp"
-                    android:layout_height="120dp"
+                    android:layout_height="110dp"
                     android:translationZ="6dp"
                     app:layout_constraintEnd_toEndOf="@+id/clLevel1"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/polisi"
+                    app:srcCompat="@drawable/lampu_lalu_lintas"
                     tools:layout_editor_absoluteY="62dp" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLevel2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnLevel1">
+
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnLevel3"
+                android:id="@+id/cvLevel2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="26dp"
-                app:rippleColor="@color/black"
-                android:background="@color/white"
+                android:layout_marginTop="-60dp"
+                app:cardCornerRadius="21dp"
                 app:elevation="11dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnLevel2">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/bg_level3"
-                    android:orientation="horizontal"
-                    android:padding="5dp">
-
-                    <ImageView
-                        android:id="@+id/ivLevel3"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="8dp"
-                        android:src="@drawable/ic_baseline_looks_3_24"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/white" />
-
-                    <TextView
-                        android:id="@+id/tvLevel3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:gravity="center"
-                        android:text="LEVEL 3"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="11sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/ivLevel3"
-                        app:layout_constraintTop_toBottomOf="@+id/ivLevel3" />
-
-                    <TextView
-                        android:id="@+id/tvLabel3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mediun"
-                        android:textColor="@color/white"
-                        android:textSize="27sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="@+id/tvLevel3"
-                        app:layout_constraintTop_toBottomOf="@+id/tvLevel3" />
-
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="-50dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/polisi" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnLevel2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                app:cardCornerRadius="26dp"
-                app:rippleColor="@color/black"
-                android:background="@color/white"
-                app:elevation="11dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnLevel1">
+                app:layout_constraintTop_toBottomOf="@+id/imgLevel2">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -246,30 +188,125 @@
                         app:layout_constraintStart_toStartOf="@+id/tvLevel2"
                         app:layout_constraintTop_toBottomOf="@+id/tvLevel2" />
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="-50dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/polisi" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </com.google.android.material.card.MaterialCardView>
 
+            <ImageView
+                android:id="@+id/imgLevel2"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:translationZ="16dp"
+                app:layout_constraintEnd_toEndOf="@id/cvLevel2"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/mobil" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLevel3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clLevel2">
+
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnLevel4"
+                android:id="@+id/btnLevel3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginTop="-70dp"
                 app:cardCornerRadius="26dp"
                 app:rippleColor="@color/black"
                 android:background="@color/white"
                 app:elevation="11dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnLevel3">
+                app:layout_constraintTop_toBottomOf="@+id/imgLevel3">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_level3"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/ivLevel3"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/ic_baseline_looks_3_24"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:id="@+id/tvLevel3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center"
+                        android:text="LEVEL 3"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="11sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/ivLevel3"
+                        app:layout_constraintTop_toBottomOf="@+id/ivLevel3" />
+
+                    <TextView
+                        android:id="@+id/tvLabel3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mediun"
+                        android:textColor="@color/white"
+                        android:textSize="27sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="@+id/tvLevel3"
+                        app:layout_constraintTop_toBottomOf="@+id/tvLevel3" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <ImageView
+                android:id="@+id/imgLevel3"
+                android:layout_width="110dp"
+                android:layout_height="100dp"
+                android:translationZ="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/gedung_police" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLevel4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clLevel3">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnLevel4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-70dp"
+                app:cardCornerRadius="26dp"
+                app:rippleColor="@color/black"
+                android:background="@color/white"
+                app:elevation="11dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imglevel4">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -313,31 +350,47 @@
                         app:layout_constraintStart_toStartOf="@+id/tvLevel4"
                         app:layout_constraintTop_toBottomOf="@+id/tvLevel4" />
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="-50dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/polisi" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
             </com.google.android.material.card.MaterialCardView>
+
+
+            <ImageView
+                android:id="@+id/imglevel4"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:translationZ="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/polisi" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clLevel5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clLevel4">
+
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btnLevel5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginTop="-70dp"
                 android:background="@color/white"
                 app:cardCornerRadius="26dp"
                 app:elevation="11dp"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnLevel4"
+                app:layout_constraintTop_toBottomOf="@+id/imgLevel5"
                 app:rippleColor="@color/black">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -382,17 +435,30 @@
                         app:layout_constraintStart_toStartOf="@+id/tvLevel5"
                         app:layout_constraintTop_toBottomOf="@+id/tvLevel5" />
 
-                    <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginTop="-50dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/polisi" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </com.google.android.material.card.MaterialCardView>
+
+            <ImageView
+                android:id="@+id/imgLevel5"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:translationZ="6dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/gedung_police" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="61dp"
+                android:layout_height="61dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/profile" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
