@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "495536925985",
+    "project_id": "kuis-lalu-lintas",
+    "storage_bucket": "kuis-lalu-lintas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495536925985:android:fb96ccd4f72212f3da6260",
+        "android_client_info": {
+          "package_name": "com.example.kuisrambulalulintas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495536925985-d0ub01c73kk36f34n6lojdnsn1mg6h6d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBWiGY73WkkaiWkX46mQjOn1sNRm5Of1Pk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495536925985-d0ub01c73kk36f34n6lojdnsn1mg6h6d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
