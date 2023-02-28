@@ -18,6 +18,7 @@
     <color name="orange_light">#F9C70D</color>
     <color name="orange_dark">#F6890C</color>
     <color name="grey">#5A5A5A</color>
+    <color name="grey_menu">#E3E3E3</color>
 
     android:startColor="#F9C70D"
     android:centerColor="#F8B90C"
