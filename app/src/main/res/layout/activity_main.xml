@@ -6,15 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
+    android:background="@drawable/bg_menu"
     android:gravity="center_vertical">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="7dp"
-        android:text="Kuis Rambu Lalu Lintas"
+        android:layout_marginStart="16dp"
         android:fontFamily="@font/alfa_slab_one"
+        android:text="Kuis Rambu Lalu Lintas"
         android:textColor="@color/black"
         android:textSize="17sp"
         android:textStyle="bold"
