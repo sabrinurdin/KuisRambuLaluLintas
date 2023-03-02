@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_materi"
+    android:background="@drawable/bg_peringatan"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.MenuMateriFragment">
 
@@ -11,7 +11,9 @@
         android:id="@+id/materialCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
         app:cardCornerRadius="11dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -28,6 +30,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="34dp"
                 android:layout_marginTop="8dp"
+                android:text="Ayo Pelajari Materi"
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="25sp"
@@ -35,10 +38,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                android:text="Ayo Pelajari Materi" />
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <ProgressBar
+            <ImageView
+                android:id="@+id/ivKumpulanRambu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/rambu"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                app:layout_constraintEnd_toStartOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView" />
+
+            <!--<ProgressBar
                 android:id="@+id/progressBar2"
                 style="@style/CircularDeterminateProgressBar"
                 android:layout_width="120dp"
@@ -50,7 +63,7 @@
                 app:circularflow_radiusInDP="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent" />-->
 
             <TextView
                 android:id="@+id/scoreTv"
@@ -66,22 +79,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="Kamu menjawab benar 8 dari 10 soal" />
 
-            <TextView
-                android:id="@+id/tvHasil"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="19sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@+id/progressBar2"
-                app:layout_constraintEnd_toEndOf="@+id/progressBar2"
-                app:layout_constraintStart_toStartOf="@+id/progressBar2"
-                app:layout_constraintTop_toTopOf="@+id/progressBar2"
-                tools:text="8/10" />
-
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="150dp"
+                android:layout_width="130dp"
                 android:layout_height="170dp"
                 android:src="@drawable/polisi"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -91,187 +91,211 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvLarangan"
-        android:layout_width="150dp"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="31dp"
-        android:layout_marginBottom="399dp"
-        app:cardCornerRadius="26dp"
-        app:layout_constraintBottom_toTopOf="@+id/cvPerintah"
-        app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="@color/black">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_level4"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/ivLarangan"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/larangan_parkir"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvLarangan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="RAMBU LARANGAN"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivLarangan" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvPeringatan"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="31dp"
-        android:layout_marginBottom="399dp"
-        app:cardCornerRadius="26dp"
-        app:layout_constraintBottom_toTopOf="@+id/cvPetunjuk"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="55dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/black">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_level5"
-            android:orientation="horizontal"
-            android:padding="5dp">
-
-            <ImageView
-                android:id="@+id/ivPeringatan"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/lampu_merah"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvPeringatan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="RAMBU PERINGATAN"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivPeringatan" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvPerintah"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="31dp"
-        app:cardCornerRadius="26dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="@color/black">
+        app:layout_constraintTop_toBottomOf="@+id/materialCardView">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvLarangan"
+            android:layout_width="171dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_level3"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:layout_margin="8dp"
+            app:cardCornerRadius="26dp"
+            app:layout_constraintBottom_toTopOf="@+id/cvPerintah"
+            app:layout_constraintEnd_toStartOf="@+id/cvPeringatan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="@color/black">
 
-            <ImageView
-                android:id="@+id/ivPerintah"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/perintah"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvPerintah"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="RAMBU  PERINTAH"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivPerintah" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:background="@drawable/bg_background_materi"
+                android:orientation="horizontal"
+                android:padding="11dp">
+
+                <ImageView
+                    android:id="@+id/ivLarangan"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/larangan_parkir"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvLarangan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Rambu Larangan"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivLarangan" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cvPetunjuk"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="31dp"
-        android:layout_marginBottom="32dp"
-        app:cardCornerRadius="26dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:rippleColor="@color/black">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvPeringatan"
+            android:layout_width="171dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/bg_level2"
-            android:orientation="horizontal"
-            android:padding="5dp">
+            android:layout_margin="8dp"
+            app:cardCornerRadius="26dp"
+            app:layout_constraintBottom_toTopOf="@+id/cvPetunjuk"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cvLarangan"
+            app:layout_constraintTop_toTopOf="parent"
+            app:rippleColor="@color/black">
 
-            <ImageView
-                android:id="@+id/ivPetunjuk"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:src="@drawable/halte_bus"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvPetunjuk"
-                android:layout_width="wrap_content"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="RAMBU PETUNJUK"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="16dp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ivPetunjuk" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:background="@drawable/bg_background_materi2"
+                android:orientation="horizontal"
+                android:padding="11dp">
+
+                <ImageView
+                    android:id="@+id/ivPeringatan"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/lampu_merah"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPeringatan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Rambu Peringatan"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivPeringatan" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvPerintah"
+            android:layout_width="171dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="26dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/cvPetunjuk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvLarangan"
+            app:rippleColor="@color/black">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_background_materi3"
+                android:orientation="horizontal"
+                android:padding="11dp">
+
+                <ImageView
+                    android:id="@+id/ivPerintah"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/rambu_perintah"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPerintah"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Rambu Perintah"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivPerintah" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cvPetunjuk"
+            android:layout_width="171dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="26dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cvPerintah"
+            app:layout_constraintTop_toBottomOf="@+id/cvPeringatan"
+            app:rippleColor="@color/black">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_background_materi4"
+                android:orientation="horizontal"
+                android:padding="11dp">
+
+                <ImageView
+                    android:id="@+id/ivPetunjuk"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/halte_bus"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPetunjuk"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="16dp"
+                    android:gravity="center"
+                    android:text="Rambu Petunjuk"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivPetunjuk" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
