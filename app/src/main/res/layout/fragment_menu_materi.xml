@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_peringatan"
+    android:background="@drawable/bg_menu_materi"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.MenuMateriFragment">
 
@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:cardCornerRadius="11dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,7 +42,7 @@
 
             <ImageView
                 android:id="@+id/ivKumpulanRambu"
-                android:layout_width="wrap_content"
+                android:layout_width="210dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:src="@drawable/rambu"
@@ -81,7 +81,7 @@
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="130dp"
+                android:layout_width="110dp"
                 android:layout_height="170dp"
                 android:src="@drawable/polisi"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -96,7 +96,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="35dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -104,10 +104,11 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvLarangan"
-            android:layout_width="171dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
             app:cardCornerRadius="26dp"
+            android:layout_marginBottom="9dp"
+            android:layout_marginEnd="4dp"
             app:layout_constraintBottom_toTopOf="@+id/cvPerintah"
             app:layout_constraintEnd_toStartOf="@+id/cvPeringatan"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,12 +120,15 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_background_materi"
                 android:orientation="horizontal"
-                android:padding="11dp">
+                android:paddingStart="13dp"
+                android:paddingTop="11dp"
+                android:paddingEnd="13dp"
+                android:paddingBottom="11dp">
 
                 <ImageView
                     android:id="@+id/ivLarangan"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="91dp"
+                    android:layout_height="91dp"
                     android:src="@drawable/larangan_parkir"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -135,7 +139,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="Rambu Larangan"
                     android:textAlignment="center"
@@ -152,9 +156,10 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvPeringatan"
-            android:layout_width="171dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginBottom="9dp"
+            android:layout_marginStart="4dp"
             app:cardCornerRadius="26dp"
             app:layout_constraintBottom_toTopOf="@+id/cvPetunjuk"
             app:layout_constraintEnd_toEndOf="parent"
@@ -167,12 +172,15 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_background_materi2"
                 android:orientation="horizontal"
-                android:padding="11dp">
+                android:paddingStart="13dp"
+                android:paddingTop="11dp"
+                android:paddingEnd="13dp"
+                android:paddingBottom="11dp">
 
                 <ImageView
                     android:id="@+id/ivPeringatan"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="91dp"
+                    android:layout_height="91dp"
                     android:src="@drawable/lampu_merah"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -183,7 +191,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="Rambu Peringatan"
                     android:textAlignment="center"
@@ -200,7 +208,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvPerintah"
-            android:layout_width="171dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:cardCornerRadius="26dp"
@@ -215,12 +223,15 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_background_materi3"
                 android:orientation="horizontal"
-                android:padding="11dp">
+                android:paddingStart="13dp"
+                android:paddingTop="11dp"
+                android:paddingEnd="13dp"
+                android:paddingBottom="11dp">
 
                 <ImageView
                     android:id="@+id/ivPerintah"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="91dp"
+                    android:layout_height="91dp"
                     android:src="@drawable/rambu_perintah"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -231,7 +242,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="Rambu Perintah"
                     android:textAlignment="center"
@@ -248,7 +259,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/cvPetunjuk"
-            android:layout_width="171dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             app:cardCornerRadius="26dp"
@@ -263,12 +274,15 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/bg_background_materi4"
                 android:orientation="horizontal"
-                android:padding="11dp">
+                android:paddingStart="13dp"
+                android:paddingTop="11dp"
+                android:paddingEnd="13dp"
+                android:paddingBottom="11dp">
 
                 <ImageView
                     android:id="@+id/ivPetunjuk"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="91dp"
+                    android:layout_height="91dp"
                     android:src="@drawable/halte_bus"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -279,7 +293,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:gravity="center"
                     android:text="Rambu Petunjuk"
                     android:textAlignment="center"

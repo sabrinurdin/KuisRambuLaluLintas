@@ -39,13 +39,17 @@ class MateriFragment : Fragment() {
 
         if (args.rambu == 1){
             gambarList = rambuLaranganList
+            binding.clBackground.setBackgroundResource(R.drawable.bg_larangan)
         } else if (args.rambu == 2){
             gambarList = rambuPeringatanList
+            binding.clBackground.setBackgroundResource(R.drawable.bg_peringatan)
         }
         else if (args.rambu == 3){
             gambarList = rambuPerintahList
+            binding.clBackground.setBackgroundResource(R.drawable.bg_perintah)
         } else {
             gambarList = rambuPetunjukList
+            binding.clBackground.setBackgroundResource(R.drawable.bg_petunjuk)
         }
 
 
