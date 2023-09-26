@@ -9,7 +9,6 @@
     android:background="@drawable/bg_background_menu"
     android:gravity="center_vertical">
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,10 +39,9 @@
         android:layout_height="213dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.581"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivProfile"
-        app:srcCompat="@drawable/banner2" />
+        app:srcCompat="@drawable/banner3" />
 
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/cvPlay"
@@ -252,7 +250,7 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <ImageButton
+   <!-- <ImageButton
         android:id="@+id/btnDrawableSelector"
         android:layout_width="48dp"
         android:layout_height="48dp"
@@ -261,7 +259,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cvExit"
         android:background="@drawable/btn_drawable_selector"
-        android:padding="16dp" />
-
+        android:padding="16dp" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>
