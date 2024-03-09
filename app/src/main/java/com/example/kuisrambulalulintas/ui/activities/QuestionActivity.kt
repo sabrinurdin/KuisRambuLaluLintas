@@ -16,6 +16,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.Glide
 import com.example.kuisrambulalulintas.R
 import com.example.kuisrambulalulintas.databinding.ActivityQuestionBinding
@@ -25,17 +26,19 @@ import com.example.kuisrambulalulintas.utils.Resource
 import com.example.kuisrambulalulintas.viewmodel.MainViewModel
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
-    private lateinit var binding : ActivityQuestionBinding
+    private lateinit var binding: ActivityQuestionBinding
 
-    private val viewModel : MainViewModel by viewModels()
+    private val viewModel: MainViewModel by viewModels()
 
     private var userName: String? = null
     private var question: Int? = null
-    private lateinit var timer: CountDownTimer
+    lateinit var timer: CountDownTimer
 
     private var questionsList: ArrayList<DataSoal> = ArrayList()
 
@@ -60,18 +63,18 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
         setContentView(binding.root)
 
         userName = intent.getStringExtra(Constants.USER_NAME)
-        question = intent.getIntExtra("question",0)
+        question = intent.getIntExtra("question", 0)
 
         val db = FirebaseFirestore.getInstance()
         val soalRef = db.collection("kuis")
 
         getDataKuis()
 
-        binding.sbTime.max = 10
+        binding.sbTime.max = 30
         binding.sbTime.progress = 10
         binding.sbTime.setOnSeekBarChangeListener(this)
 
-        timer = object : CountDownTimer((binding.sbTime.progress * 1000).toLong(),1000){
+        timer = object : CountDownTimer((binding.sbTime.progress * 3000).toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 binding.tvTimer.text = "00:0${millisUntilFinished / 1000}"
                 val longValue = millisUntilFinished / 1000
@@ -79,17 +82,12 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
             }
 
             override fun onFinish() {
-                if (currentQuestionIndex < question!! - 1) {
-                    currentQuestionIndex++
-                    updateQuestion()
-                } else {
-                    val intent = Intent(this@QuestionActivity, ResultActivity::class.java)
-                    intent.putExtra(Constants.USER_NAME, userName)
-                    intent.putExtra(Constants.TOTAL_SoalS, question!!)
-                    intent.putExtra(Constants.SCORE, totalScore)
-                    startActivity(intent)
-                    finish()
-                }
+                //currentQuestionIndex++
+                /*updateQuestion()
+                Log.d("indexQuestion", "index ${currentQuestionIndex}")*/
+                checkAnswer2()
+
+
             }
 
         }
@@ -102,74 +100,23 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
             binding.optionFour,
         )
 
-        //updateQuestion()
+
 
         binding.btnSubmit.setOnClickListener {
-            if (!isAnswerChecked) {
-                val anyAnswerIsChecked = selectedAlternativeIndex != -1
-                if (!anyAnswerIsChecked) {
-                    Toast.makeText(this, "Please, pilih jawaban anda", Toast.LENGTH_SHORT).show()
-                } else {
-                    val currentQuestion = questionsList[currentQuestionIndex]
-                    if (
-                        selectedAlternativeIndex == currentQuestion.jawaban
-                    ) {
-                        answerView(tvAlternatives!![selectedAlternativeIndex],
-                            R.drawable.correct_option_border_bg
-                        )
-                        totalScore++
-                        timer.cancel()
-                    } else {
-                        kesalahan++
-                        timer.cancel()
-                        answerView(tvAlternatives!![selectedAlternativeIndex],
-                            R.drawable.wrong_option_border_bg
-                        )
-                        answerView(tvAlternatives!![currentQuestion.jawaban!!],
-                            R.drawable.correct_option_border_bg
-                        )
-
-                        if (kesalahan == 1){
-                            binding.ivKesempatan1.visibility = View.GONE
-                        } else if (kesalahan == 2){
-                            binding.ivKesempatan2.visibility = View.GONE
-                        } else if (kesalahan == 3){
-                            binding.ivKesempatan3.visibility = View.GONE
-                        }else {
-                            val intent = Intent(this, ResultActivity::class.java)
-                            intent.putExtra(Constants.USER_NAME, userName)
-                            intent.putExtra(Constants.TOTAL_SoalS, question!!)
-                            intent.putExtra(Constants.SCORE, totalScore)
-                            startActivity(intent)
-                            finish()
-                        }
-                    }
-
-                    isAnswerChecked = true
-                    binding.btnSubmit.text = if (currentQuestionIndex == question!! - 1) "SELESAI" else "SOAL SELANJUTNYA"
-                    selectedAlternativeIndex = -1
-                }
+            var anyQuestion = selectedAlternativeIndex != -1
+            if (!anyQuestion){
+                Toast.makeText(this,"Silahkan pilih jawaban anda",Toast.LENGTH_SHORT).show()
             } else {
-                if (currentQuestionIndex < question!! - 1) {
-                    currentQuestionIndex++
-                    updateQuestion()
-                } else {
-                    val intent = Intent(this, ResultActivity::class.java)
-                    intent.putExtra(Constants.USER_NAME, userName)
-                    intent.putExtra(Constants.TOTAL_SoalS, question!!)
-                    intent.putExtra(Constants.SCORE, totalScore)
-                    startActivity(intent)
-                    finish()
-                }
-
-                isAnswerChecked = false
+                checkAnswer2()
             }
         }
+
+
 
         tvAlternatives?.let {
             for (optionIndex in it.indices) {
                 it[optionIndex].let {
-                    it.setOnClickListener{
+                    it.setOnClickListener {
                         if (!isAnswerChecked) {
                             selectedAlternativeView(it as TextView, optionIndex)
                         }
@@ -180,24 +127,108 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
 
     }
 
+
+
+    private fun checkAnswer2() {
+        Log.d("indexQuestion", "selected ${selectedAlternativeIndex}")
+        Log.d("indexQuestion", "indexQuestion $currentQuestionIndex")
+
+        val anyAnswerIsChecked = selectedAlternativeIndex != -1
+        Log.d("indexQuestion", "selectedAlter $selectedAlternativeIndex")
+        if (!anyAnswerIsChecked){
+            //currentQuestionIndex++
+            updateQuestion()
+        } else {
+            binding.btnSubmit.isEnabled = false
+            val currentQuestion = questionsList[currentQuestionIndex]
+            if (
+                selectedAlternativeIndex == currentQuestion.jawaban
+            ) {
+                answerView(
+                    tvAlternatives!![selectedAlternativeIndex],
+                    R.drawable.correct_option_border_bg
+                )
+                totalScore++
+                timer.cancel()
+            } else {
+                kesalahan++
+                timer.cancel()
+                answerView(
+                    tvAlternatives!![selectedAlternativeIndex],
+                    R.drawable.wrong_option_border_bg
+                )
+                answerView(
+                    tvAlternatives!![currentQuestion.jawaban!!],
+                    R.drawable.correct_option_border_bg
+                )
+
+                if (kesalahan == 1) {
+                    binding.ivKesempatan1.visibility = View.GONE
+                } else if (kesalahan == 2) {
+                    binding.ivKesempatan2.visibility = View.GONE
+                } else if (kesalahan == 3) {
+                    binding.ivKesempatan3.visibility = View.GONE
+                } else {
+
+                    val intent = Intent(this, ResultActivity::class.java)
+                    intent.putExtra(Constants.USER_NAME, userName)
+                    intent.putExtra(Constants.TOTAL_SoalS, question!!)
+                    intent.putExtra(Constants.SCORE, totalScore)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+
+            //binding.btnSubmit.text = if (currentQuestionIndex == question!! - 1) "SELESAI" else "SOAL SELANJUTNYA"
+            selectedAlternativeIndex = -1
+
+        }
+
+        viewModel.viewModelScope.launch {
+            delay(500)
+            binding.btnSubmit.isEnabled = true
+            updateQuestion()
+            if (currentQuestionIndex < question!! - 1) {
+                currentQuestionIndex++
+                updateQuestion()
+                //checkAnswer()
+            } else {
+                timer.cancel()
+                val intent = Intent(applicationContext, ResultActivity::class.java)
+                intent.putExtra(Constants.USER_NAME, userName)
+                intent.putExtra(Constants.TOTAL_SoalS, question!!)
+                intent.putExtra(Constants.SCORE, totalScore)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+
+    }
+
     private fun getDataKuis() {
         viewModel.getKuis()
-        viewModel.soal.observe(this){ response ->
-            when(response){
+        viewModel.soal.observe(this) { response ->
+            when (response) {
                 is Resource.Success -> {
                     questionsList = response.data as ArrayList<DataSoal>
                     questionsList.shuffle()
                     updateQuestion()
-
-                    Log.d("DataResponse","$questionsList")
+                    //binding.progressBar.visibility = View.GONE
+                    //binding.linearLayout.visibility = View.VISIBLE
+                    Log.d("DataResponse", "$questionsList")
                 }
 
                 is Resource.Loading -> {
-
+                    //binding.progressBar2.visibility = View.VISIBLE
+                    //binding.linearLayout.visibility = View.GONE
                 }
+
                 is Resource.Error -> {
-
+                    //binding.progressBar2.visibility = View.GONE
                 }
+
                 else -> {
 
                 }
@@ -208,28 +239,43 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
 
 
     private fun updateQuestion() {
-        defaultAlternativesView()
-        timer.start()
+        //checkAnswer()
 
-        // Render Question Text
-        binding.tvQuestion.text = "Apa arti gambar lalu lintas di bawah ini"
-        // Render Question Image
-        Glide.with(applicationContext)
-            .load(questionsList[currentQuestionIndex].image)
-            .into(binding.ivImage)
-        // progressBar
-        //binding.ivImage.setIma(questionsList[currentQuestionIndex].image)
-        binding.progressBar.max = question!!
-        binding.progressBar.progress = currentQuestionIndex + 1
-        // Text of progress bar
-        binding.tvProgress.text = "${currentQuestionIndex + 1}/${question!!}"
+        //viewModel.viewModelScope.launch {
 
-        for (alternativeIndex in questionsList[currentQuestionIndex].pilihan!!.indices) {
-            tvAlternatives!![alternativeIndex].text = questionsList[currentQuestionIndex].pilihan?.get(alternativeIndex)!!
-        }
+            //delay(500)
+            defaultAlternativesView()
 
-        binding.btnSubmit.text = if (currentQuestionIndex == question!! - 1) "SELESAI" else "JAWAB"
+            timer.start()
+
+            // Render Question Text
+            binding.tvQuestion.text = "Apa arti gambar lalu lintas di bawah ini"
+            // Render Question Image
+            Glide.with(applicationContext)
+                .load(questionsList[currentQuestionIndex].image)
+                .into(binding.ivImage)
+            // progressBar
+            //binding.ivImage.setIma(questionsList[currentQuestionIndex].image)
+            binding.progressBar.max = question!!
+            binding.progressBar.progress = currentQuestionIndex + 1
+            // Text of progress bar
+            binding.tvProgress.text = "${currentQuestionIndex + 1}/${question!!}"
+
+            //binding.btnSubmit.isEnabled = false
+
+            for (alternativeIndex in questionsList[currentQuestionIndex].pilihan!!.indices) {
+                tvAlternatives!![alternativeIndex].text =
+                    questionsList[currentQuestionIndex].pilihan?.get(alternativeIndex)!!
+            }
+
+            binding.btnSubmit.text =
+                if (currentQuestionIndex == question!! - 1) "SELESAI" else "SOAL SELANJUTNYA"
+        //}
+
+
+        //binding.btnSubmit.text = if (currentQuestionIndex == question!! - 1) "SELESAI" else "JAWAB"
     }
+
 
     private fun defaultAlternativesView() {
         for (alternativeTv in tvAlternatives!!) {
@@ -267,12 +313,12 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun updateSeekbar(progress: Int){
-        val minute : Int = progress / 60
-        val seconds : Int = progress % 60
+    private fun updateSeekbar(progress: Int) {
+        val minute: Int = progress / 60
+        val seconds: Int = progress % 60
         var secondsFinal = ""
-        if (seconds <= 9){
-            secondsFinal = "0"  +seconds
+        if (seconds <= 9) {
+            secondsFinal = "0" + seconds
         } else {
             secondsFinal = "" + seconds
         }
@@ -312,4 +358,158 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
         alert.setTitle("Keluar")
         alert.show()
     }
+
+
+
 }
+
+/*binding.btnSubmit.setOnClickListener {
+    if (!isAnswerChecked) {
+        val anyAnswerIsChecked = selectedAlternativeIndex != -1
+        if (!anyAnswerIsChecked) {
+            Toast.makeText(this, "Please, pilih jawaban anda", Toast.LENGTH_SHORT).show()
+        } else {
+            val currentQuestion = questionsList[currentQuestionIndex]
+            if (
+                selectedAlternativeIndex == currentQuestion.jawaban
+            ) {
+                answerView(tvAlternatives!![selectedAlternativeIndex],
+                    R.drawable.correct_option_border_bg
+                )
+                totalScore++
+                timer.cancel()
+            } else {
+                kesalahan++
+                timer.cancel()
+                answerView(tvAlternatives!![selectedAlternativeIndex],
+                    R.drawable.wrong_option_border_bg
+                )
+                answerView(tvAlternatives!![currentQuestion.jawaban!!],
+                    R.drawable.correct_option_border_bg
+                )
+
+                if (kesalahan == 1){
+                    binding.ivKesempatan1.visibility = View.GONE
+                } else if (kesalahan == 2){
+                    binding.ivKesempatan2.visibility = View.GONE
+                } else if (kesalahan == 3){
+                    binding.ivKesempatan3.visibility = View.GONE
+                }else {
+                    val intent = Intent(this, ResultActivity::class.java)
+                    intent.putExtra(Constants.USER_NAME, userName)
+                    intent.putExtra(Constants.TOTAL_SoalS, question!!)
+                    intent.putExtra(Constants.SCORE, totalScore)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+            isAnswerChecked = true
+            binding.btnSubmit.text = if (currentQuestionIndex == question!! - 1) "SELESAI" else "SOAL SELANJUTNYA"
+            selectedAlternativeIndex = -1
+        }
+    } else {
+        if (currentQuestionIndex < question!! - 1) {
+            currentQuestionIndex++
+            updateQuestion()
+        } else {
+            val intent = Intent(this, ResultActivity::class.java)
+            intent.putExtra(Constants.USER_NAME, userName)
+            intent.putExtra(Constants.TOTAL_SoalS, question!!)
+            intent.putExtra(Constants.SCORE, totalScore)
+            startActivity(intent)
+            finish()
+        }
+
+        isAnswerChecked = false
+    }
+}*/
+
+/*    private fun checkAnswer() {
+        val anyAnswerIsChecked = selectedAlternativeIndex != -1
+        Log.d("indexQuestion", "selected ${selectedAlternativeIndex}")
+        Log.d("indexQuestion", "indexQuestion $currentQuestionIndex")
+        if (!anyAnswerIsChecked) {
+            currentQuestionIndex++
+            updateQuestion()
+        } else {
+            binding.btnSubmit.isEnabled = false
+            val currentQuestion = questionsList[currentQuestionIndex]
+
+            if (
+                selectedAlternativeIndex == currentQuestion.jawaban
+            ) {
+                answerView(
+                    tvAlternatives!![selectedAlternativeIndex],
+                    R.drawable.correct_option_border_bg
+                )
+                totalScore++
+                timer.cancel()
+                //updateQuestion()
+            } else {
+                //updateQuestion()
+                kesalahan++
+                timer.cancel()
+                answerView(
+                    tvAlternatives!![selectedAlternativeIndex],
+                    R.drawable.wrong_option_border_bg
+                )
+                answerView(
+                    tvAlternatives!![currentQuestion.jawaban!!],
+                    R.drawable.correct_option_border_bg
+                )
+
+                if (kesalahan == 1) {
+                    binding.ivKesempatan1.visibility = View.GONE
+                } else if (kesalahan == 2) {
+                    binding.ivKesempatan2.visibility = View.GONE
+                } else if (kesalahan == 3) {
+                    binding.ivKesempatan3.visibility = View.GONE
+                } else {
+
+                    val intent = Intent(this, ResultActivity::class.java)
+                    intent.putExtra(Constants.USER_NAME, userName)
+                    intent.putExtra(Constants.TOTAL_SoalS, question!!)
+                    intent.putExtra(Constants.SCORE, totalScore)
+                    startActivity(intent)
+                    finish()
+                }
+            }
+
+
+
+            if (currentQuestionIndex < question!! - 1) {
+                currentQuestionIndex++
+                updateQuestion()
+                //checkAnswer()
+            } else {
+                timer.cancel()
+                val intent = Intent(this, ResultActivity::class.java)
+                intent.putExtra(Constants.USER_NAME, userName)
+                intent.putExtra(Constants.TOTAL_SoalS, question!!)
+                intent.putExtra(Constants.SCORE, totalScore)
+                startActivity(intent)
+                finish()
+            }
+
+            isAnswerChecked = true
+            //binding.btnSubmit.text = if (currentQuestionIndex == question!! - 1) "SELESAI" else "SOAL SELANJUTNYA"
+            selectedAlternativeIndex = -1
+        }
+        //} else {
+        *//*    if (currentQuestionIndex < question!! - 1) {
+                currentQuestionIndex++
+                updateQuestion()
+            } else {
+                val intent = Intent(this, ResultActivity::class.java)
+                intent.putExtra(Constants.USER_NAME, userName)
+                intent.putExtra(Constants.TOTAL_SoalS, question!!)
+                intent.putExtra(Constants.SCORE, totalScore)
+                startActivity(intent)
+                finish()
+            }*//*
+
+        isAnswerChecked = false
+        //}
+    }*/
+

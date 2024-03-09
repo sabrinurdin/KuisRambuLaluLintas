@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/text_label2"
     tools:context=".ui.activities.LevelActivity">
 
     <ScrollView
@@ -28,7 +28,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:fontFamily="@font/black_han_sans"
-                android:text="Ayo Main Sabri"
+                android:text="Ayo Main !"
                 android:textColor="#F85C7C"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -41,6 +41,7 @@
                 android:layout_height="19dp"
                 android:layout_marginTop="8dp"
                 android:text="Pilih level kamu!"
+                android:textColor="@color/text_label"
                 app:layout_constraintStart_toStartOf="@+id/labelPlay"
                 app:layout_constraintTop_toBottomOf="@+id/labelPlay" />
 

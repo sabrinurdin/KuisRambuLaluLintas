@@ -13,6 +13,9 @@
         <argument
             android:name="rambu"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_materiFragment_to_menuMateriFragment"
+            app:destination="@id/menuMateriFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuMateriFragment"

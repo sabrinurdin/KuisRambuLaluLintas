@@ -15,6 +15,8 @@ class ResultActivity : AppCompatActivity() {
         binding = ActivityResultBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+
+
         val userName = intent.getStringExtra(Constants.USER_NAME)
         val totalQuestions = intent.getIntExtra(Constants.TOTAL_SoalS, 0)
         val score = intent.getIntExtra(Constants.SCORE, 0)
@@ -28,13 +30,13 @@ class ResultActivity : AppCompatActivity() {
             intent.putExtra("question",totalQuestions)
             intent.putExtra(Constants.USER_NAME,userName)
             startActivity(intent)
-            finish()
+            finishAffinity()
         }
 
         binding.btnMenu.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
-            finish()
+            finishAffinity()
         }
     }
 }

@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.kuisrambulalulintas.R
 import com.example.kuisrambulalulintas.databinding.FragmentMateriBinding
@@ -33,6 +35,8 @@ class MateriFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentMateriBinding.inflate(layoutInflater, container, false)
+
+
 
 
         val currentGambar = rambuLaranganList[selectIndex]
@@ -88,5 +92,22 @@ class MateriFragment : Fragment() {
         }
         binding.ivRambu.setImageResource(gambarList!![selectIndex].gambar)
         binding.tvKeterangan.text = gambarList!![selectIndex].keterangan
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,object : OnBackPressedCallback(true){
+            override fun handleOnBackPressed() {
+                binding.buttonBacks.setOnClickListener {
+                    findNavController().navigate(MateriFragmentDirections.actionMateriFragmentToMenuMateriFragment())
+                    // ...
+                }
+
+            }
+
+        })
+
+
     }
 }

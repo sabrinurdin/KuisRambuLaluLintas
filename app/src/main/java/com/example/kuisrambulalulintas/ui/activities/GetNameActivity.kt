@@ -50,7 +50,7 @@ class GetNameActivity : AppCompatActivity() {
                 intent.putExtra(Constants.USER_NAME, binding.etName.text.toString())
                 intent.putExtra("question", question)
                 startActivity(intent)
-//                finish()
+                finish()
             }
         }
     }

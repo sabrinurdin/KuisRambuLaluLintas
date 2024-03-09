@@ -78,6 +78,7 @@ class LevelActivity : AppCompatActivity() {
             intent.putExtra("level",tvLevel)
             intent.putExtra("desc",tvDescLevel)
             startActivity(intent)
+            finish()
         }
 
     }

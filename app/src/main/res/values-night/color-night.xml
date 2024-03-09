@@ -9,11 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#777777</color>
 
-    <color name="question">#000000</color>
+    <color name="question">#FFFFFF</color>
 
-    <color name="text_label">#FF000000</color>
-    <color name="text_label2">#FFFFFFFF</color>
-
+    <color name="text_label">#FFFFFFFF</color>
+    <color name="text_label2">#FF000000</color>
 
     <color name="blue_sky">#05D1F7</color>
     <color name="blue_light">#5BE8F7</color>
@@ -24,9 +23,5 @@
     <color name="orange_dark">#F6890C</color>
     <color name="grey">#5A5A5A</color>
     <color name="grey_menu">#E3E3E3</color>
-
-    android:startColor="#F9C70D"
-    android:centerColor="#F8B90C"
-    android:endColor="#F6890C"
 
 </resources>
