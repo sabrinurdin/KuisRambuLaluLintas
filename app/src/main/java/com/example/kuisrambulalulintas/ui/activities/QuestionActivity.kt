@@ -170,6 +170,8 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
                     binding.ivKesempatan3.visibility = View.GONE
                 } else {
 
+                    viewModel.addHistory(userName!!,totalScore)
+
                     val intent = Intent(this, ResultActivity::class.java)
                     intent.putExtra(Constants.USER_NAME, userName)
                     intent.putExtra(Constants.TOTAL_SoalS, question!!)
@@ -195,6 +197,9 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
                 //checkAnswer()
             } else {
                 timer.cancel()
+
+                viewModel.addHistory(userName!!,totalScore)
+
                 val intent = Intent(applicationContext, ResultActivity::class.java)
                 intent.putExtra(Constants.USER_NAME, userName)
                 intent.putExtra(Constants.TOTAL_SoalS, question!!)

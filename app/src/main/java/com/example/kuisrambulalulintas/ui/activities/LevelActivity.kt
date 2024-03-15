@@ -17,7 +17,7 @@ class LevelActivity : AppCompatActivity() {
 
         binding.clLevel1.setOnClickListener {
             val idLevel1 = 1
-            val question1 = 3
+            val question1 = 5
             val tvLevel = "Level 1"
             val tvDescLevel = "Newbie"
             val intent = Intent(this,GetNameActivity::class.java)
@@ -30,7 +30,7 @@ class LevelActivity : AppCompatActivity() {
 
         binding.clLevel2.setOnClickListener {
             val idLevel2 = 2
-            val question2 = 5
+            val question2 = 10
             val tvLevel = "Level 2"
             val tvDescLevel = "Continuing"
             val intent = Intent(this,GetNameActivity::class.java)
@@ -43,7 +43,7 @@ class LevelActivity : AppCompatActivity() {
 
         binding.btnLevel3.setOnClickListener {
             val idLevel3 = 3
-            val question3 = 7
+            val question3 = 15
             val tvLevel = "Level 3"
             val tvDescLevel = "Medium"
             val intent = Intent(this,GetNameActivity::class.java)
@@ -56,7 +56,7 @@ class LevelActivity : AppCompatActivity() {
 
         binding.btnLevel4.setOnClickListener {
             val idLevel4 = 4
-            val question4 = 9
+            val question4 = 20
             val tvLevel = "Level 4"
             val tvDescLevel = "Pro"
             val intent = Intent(this,GetNameActivity::class.java)
@@ -69,7 +69,7 @@ class LevelActivity : AppCompatActivity() {
 
         binding.btnLevel5.setOnClickListener {
             val idLevel5 = 5
-            val question5 = 11
+            val question5 = 25
             val tvLevel = "Level 5"
             val tvDescLevel = "Legend"
             val intent = Intent(this,GetNameActivity::class.java)
@@ -80,6 +80,5 @@ class LevelActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
     }
 }

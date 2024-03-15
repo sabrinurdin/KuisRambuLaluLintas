@@ -10,8 +10,11 @@ import androidx.appcompat.app.AlertDialog
 import com.example.kuisrambulalulintas.databinding.ActivityMainBinding
 import com.example.kuisrambulalulintas.service.BackgroundSoundService
 import com.example.kuisrambulalulintas.ui.activities.GetNameActivity
+import com.example.kuisrambulalulintas.ui.activities.HistoryActivity
 import com.example.kuisrambulalulintas.ui.activities.LevelActivity
 import com.example.kuisrambulalulintas.ui.activities.MateriActivity
+import dagger.hilt.android.AndroidEntryPoint
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -68,7 +71,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.cvExit.setOnClickListener {
-            showAlertDialog()
+            //showAlertDialog()
+            startActivity(Intent(this,HistoryActivity::class.java))
         }
 
     }

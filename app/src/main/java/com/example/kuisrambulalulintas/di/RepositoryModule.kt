@@ -2,6 +2,7 @@ package com.example.kuisrambulalulintas.di
 
 import com.example.kuisrambulalulintas.data.MainRepository
 import com.example.kuisrambulalulintas.data.MainRepositoryImpl
+import com.example.kuisrambulalulintas.data.local.KuisDao
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
@@ -17,8 +18,9 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideMainRepository(
-        database : FirebaseFirestore
+        database : FirebaseFirestore,
+        db : KuisDao
     ) : MainRepository {
-        return MainRepositoryImpl(database)
+        return MainRepositoryImpl(database,db)
     }
 }

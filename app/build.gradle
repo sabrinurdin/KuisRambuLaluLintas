@@ -10,12 +10,12 @@ plugins {
 
 android {
     namespace 'com.example.kuisrambulalulintas'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.kuisrambulalulintas"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -85,5 +85,12 @@ dependencies {
 
     def lottieVersion = "3.7.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
+
+    def roomVersion = ("2.6.0")
+    //ksp("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+    implementation("androidx.room:room-ktx:$roomVersion")
+    //implementation ("androidx.room:room-ktx:$roomVersion")
+    implementation("androidx.room:room-runtime:$roomVersion")
 
 }
