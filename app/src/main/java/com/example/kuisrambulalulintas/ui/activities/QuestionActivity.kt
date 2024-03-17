@@ -38,6 +38,7 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
 
     private var userName: String? = null
     private var question: Int? = null
+    private var idLevel: Int? = null
     lateinit var timer: CountDownTimer
 
     private var questionsList: ArrayList<DataSoal> = ArrayList()
@@ -63,6 +64,7 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
         setContentView(binding.root)
 
         userName = intent.getStringExtra(Constants.USER_NAME)
+        idLevel = intent.getIntExtra("idLevel", 0)
         question = intent.getIntExtra("question", 0)
 
         val db = FirebaseFirestore.getInstance()
@@ -131,7 +133,6 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
 
     private fun checkAnswer2() {
         Log.d("indexQuestion", "selected ${selectedAlternativeIndex}")
-        Log.d("indexQuestion", "indexQuestion $currentQuestionIndex")
 
         val anyAnswerIsChecked = selectedAlternativeIndex != -1
         Log.d("indexQuestion", "selectedAlter $selectedAlternativeIndex")
@@ -162,6 +163,8 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
                     R.drawable.correct_option_border_bg
                 )
 
+                Log.d("indexQuestion", "indexQuestion $currentQuestionIndex")
+
                 if (kesalahan == 1) {
                     binding.ivKesempatan1.visibility = View.GONE
                 } else if (kesalahan == 2) {
@@ -170,14 +173,17 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
                     binding.ivKesempatan3.visibility = View.GONE
                 } else {
 
-                    viewModel.addHistory(userName!!,totalScore)
+                        if (currentQuestionIndex == question!! - 1) {
 
-                    val intent = Intent(this, ResultActivity::class.java)
-                    intent.putExtra(Constants.USER_NAME, userName)
-                    intent.putExtra(Constants.TOTAL_SoalS, question!!)
-                    intent.putExtra(Constants.SCORE, totalScore)
-                    startActivity(intent)
-                    finish()
+                        } else if (currentQuestionIndex > 2) {
+
+                            saveScoreData(idLevel)
+                            goToResult()
+
+
+                        }
+
+
                 }
             }
 
@@ -197,19 +203,31 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
                 //checkAnswer()
             } else {
                 timer.cancel()
-
-                viewModel.addHistory(userName!!,totalScore)
-
-                val intent = Intent(applicationContext, ResultActivity::class.java)
-                intent.putExtra(Constants.USER_NAME, userName)
-                intent.putExtra(Constants.TOTAL_SoalS, question!!)
-                intent.putExtra(Constants.SCORE, totalScore)
-                startActivity(intent)
-                finish()
+                saveScoreData(idLevel)
+                goToResult()
             }
         }
 
 
+    }
+
+    private fun saveScoreData(idLevel: Int?) {
+        if (idLevel == 1){
+            viewModel.addHistory(userName!!,totalScore)
+            //goToResult()
+        } else if (idLevel == 2){
+            viewModel.addHistory2(userName!!,totalScore)
+            //goToResult()
+        } else if (idLevel == 3){
+            viewModel.addHistory3(userName!!,totalScore)
+            // goToResult()
+        } else if (idLevel == 4){
+            viewModel.addHistory4(userName!!,totalScore)
+            //goToResult()
+        } else if (idLevel == 5){
+            viewModel.addHistory5(userName!!,totalScore)
+            //goToResult()
+        }
     }
 
     private fun getDataKuis() {
@@ -330,6 +348,15 @@ class QuestionActivity : AppCompatActivity(), SeekBar.OnSeekBarChangeListener {
 
         binding.sbTime.progress = progress
         binding.tvTimer.text = "$minute:$secondsFinal"
+    }
+
+    private fun goToResult(){
+        val intent = Intent(applicationContext, ResultActivity::class.java)
+        intent.putExtra(Constants.USER_NAME, userName)
+        intent.putExtra(Constants.TOTAL_SoalS, question!!)
+        intent.putExtra(Constants.SCORE, totalScore)
+        startActivity(intent)
+        finish()
     }
 
     override fun onProgressChanged(p0: SeekBar?, progress: Int, p2: Boolean) {

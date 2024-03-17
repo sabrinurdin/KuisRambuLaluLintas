@@ -24,6 +24,8 @@
     <color name="orange_dark">#F6890C</color>
     <color name="grey">#5A5A5A</color>
     <color name="grey_menu">#E3E3E3</color>
+    <color name="yellow">#F6DC00</color>
+    <color name="yellow_light">#F5E02D</color>
 
     android:startColor="#F9C70D"
     android:centerColor="#F8B90C"

@@ -48,10 +48,18 @@ class GetNameActivity : AppCompatActivity() {
             } else {
                 val intent = Intent(this, QuestionActivity::class.java)
                 intent.putExtra(Constants.USER_NAME, binding.etName.text.toString())
+                intent.putExtra("idLevel",idLevel)
                 intent.putExtra("question", question)
                 startActivity(intent)
                 finish()
             }
+        }
+
+        binding.btnHistory.setOnClickListener {
+            val intent = Intent(this,HistoryActivity::class.java)
+            intent.putExtra("idLevel",idLevel)
+            intent.putExtra("question", question)
+            startActivity(intent)
         }
     }
 }

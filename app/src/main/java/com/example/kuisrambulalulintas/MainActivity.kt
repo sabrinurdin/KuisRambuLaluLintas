@@ -71,8 +71,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.cvExit.setOnClickListener {
-            //showAlertDialog()
-            startActivity(Intent(this,HistoryActivity::class.java))
+            showAlertDialog()
+            //startActivity(Intent(this,HistoryActivity::class.java))
         }
 
     }
